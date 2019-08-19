@@ -21,3 +21,7 @@
 ## [1.0.4] - Release.
 
 * Remove the unnecessary state update.
+
+## [1.0.5] - Release.
+
+* Update site url

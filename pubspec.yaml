@@ -1,8 +1,8 @@
 name: scrolling_day_calendar
 description: A flutter calendar package to allow users to scroll through given dates
-version: 1.0.4
+version: 1.0.5
 author: "BMB enterprises <info@bmbenterprises.ltd>"
-homepage: https://bmbenterprises.ltd
+homepage: http://bmbenterprises.ltd
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
