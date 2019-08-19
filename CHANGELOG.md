@@ -13,3 +13,7 @@
 ## [1.0.2] - Release.
 
 * Fix screenshots.
+
+## [1.0.3] - Release.
+
+* Update example code to add date examples.

@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  scrolling_day_calendar: 1.0.1
+  scrolling_day_calendar: 1.0.3
 
 ```
 
@@ -39,7 +39,9 @@ import 'package:scrolling_day_calendar/scrolling_day_calendar.dart';
 ```dart
 // set the initial page value
 Widget _pageItems = Text("Inital value");
-
+DateTime selectedDate = DateTime.now();
+DateTime startDate = DateTime.now().subtract(Duration(days: 10));
+DateTime endDate = DateTime.now().add(Duration(days: 10));
 
 // add to body
 ScrollingDayCalendar(
