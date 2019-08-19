@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           forwardIcon: Icons.arrow_forward,
           backwardIcon: Icons.arrow_back,
           pageChangeDuration: Duration(
-            microseconds: 700,
+            milliseconds: 400,
           ),
         ),
       ),

@@ -1,8 +1,12 @@
 # scrolling_day_calendar
 
-A flutter calendar package for scrolling through given days as date for Android and IOS
+A flutter calendar package for scrolling through given days as date heading and display items for that day. This package can be used on Android and IOS
 
-Show some :heart and star the repo to support the project
+## How it works
+You simply need to pass in a start date, an end date, the active date and a call-back function, the package will then allow 
+the user to swipe between the dates using PageView, on each page change the call-back you have set will be called 
+to allow you to update the page content for the given date.
+
 
 ## Screenshots
 <img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/1.png" height="300em" />
@@ -20,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  scrolling_day_calendar: 0.0.1
+  scrolling_day_calendar: 1.0.1
 
 ```
 
@@ -44,6 +48,7 @@ ScrollingDayCalendar(
           selectedDate: selectedDate, // Datetime object
           onDateChange: (direction, DateTime selectedDate) {
             setState(() {
+              print(selectedDate);
               _pageItems = Text("No data"); // this will display on the new page
             });
           },
@@ -57,7 +62,7 @@ ScrollingDayCalendar(
           forwardIcon: Icons.arrow_forward,
           backwardIcon: Icons.arrow_back,
           pageChangeDuration: Duration(
-            microseconds: 700,
+            milliseconds: 700,
           ),
         );
 ```
