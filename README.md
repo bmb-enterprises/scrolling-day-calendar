@@ -1,14 +1,63 @@
 # scrolling_day_calendar
 
-A flutter calendar for scrolling a day date 
+A flutter calendar package for scrolling through given days as date for Android and IOS
 
-## Getting Started
+Show some :heart and star the repo to support the project
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Screenshots
+<img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/1.png" height="300em" />
+<img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/2.png" height="300em" />
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+## Usage 
+
+To use the plugin: 
+
+* add the dependency to your [pubspec.yaml](https://github.com/bmb-enterprises/scrolling-day-calendar/tree/master/example)
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  scrolling_day_calendar: 0.0.1
+
+```
+
+* import the package 
+```dart 
+import 'package:scrolling_day_calendar/scrolling_day_calendar.dart';
+
+```
+
+## How to use
+
+```dart
+// set the initial page value
+Widget _pageItems = Text("Inital value");
+
+
+// add to body
+ScrollingDayCalendar(
+          startDate: startDate, // Datetime object
+          endDate: endDate, // Datetime object
+          selectedDate: selectedDate, // Datetime object
+          onDateChange: (direction, DateTime selectedDate) {
+            setState(() {
+              _pageItems = Text("No data"); // this will display on the new page
+            });
+          },
+          dateStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          pageItems: _pageItems,
+          dateFormat: "dd/MM/yyyy", // using the intl date format string
+          dateBackgroundColor: Colors.grey,
+          forwardIcon: Icons.arrow_forward,
+          backwardIcon: Icons.arrow_back,
+          pageChangeDuration: Duration(
+            microseconds: 700,
+          ),
+        );
+```

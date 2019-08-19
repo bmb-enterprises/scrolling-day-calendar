@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - Release.
 
-* TODO: Describe initial release.
+* A Customizable page scroll with calendar date header written in dart 2.
+
+## [0.0.2] - Release.
+
+* Fix screenshots.
