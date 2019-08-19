@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  scrolling_day_calendar: 1.0.3
+  scrolling_day_calendar: 1.0.4
 
 ```
 

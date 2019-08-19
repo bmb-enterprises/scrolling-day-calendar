@@ -127,14 +127,12 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
               child: Center(
                 child: MaterialButton(
                   onPressed: () {
-                    setState(() {
-                      _pageController.previousPage(
-                        duration: widget.pageChangeDuration != null
-                            ? widget.pageChangeDuration
-                            : Duration(microseconds: 700),
-                        curve: Curves.easeIn,
-                      );
-                    });
+                    _pageController.previousPage(
+                      duration: widget.pageChangeDuration != null
+                          ? widget.pageChangeDuration
+                          : Duration(microseconds: 700),
+                      curve: Curves.easeIn,
+                    );
                   },
                   child: Icon(
                     widget.backwardIcon == null
@@ -180,14 +178,12 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
               child: Center(
                 child: MaterialButton(
                   onPressed: () {
-                    setState(() {
-                      _pageController.nextPage(
-                        duration: widget.pageChangeDuration != null
-                            ? widget.pageChangeDuration
-                            : Duration(milliseconds: 700),
-                        curve: Curves.easeIn,
-                      );
-                    });
+                    _pageController.nextPage(
+                      duration: widget.pageChangeDuration != null
+                          ? widget.pageChangeDuration
+                          : Duration(milliseconds: 700),
+                      curve: Curves.easeIn,
+                    );
                   },
                   child: Icon(
                     widget.forwardIcon == null

@@ -17,3 +17,7 @@
 ## [1.0.3] - Release.
 
 * Update example code to add date examples.
+
+## [1.0.4] - Release.
+
+* Remove the unnecessary state update.
