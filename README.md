@@ -9,8 +9,8 @@ to allow you to update the page content for the given date.
 
 
 ## Screenshots
-<img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/1.png" height="300em" />
-<img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/2.png" height="300em" />
+<img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/1.png?raw=true" height="300em" />
+<img src="https://github.com/bmb-enterprises/scrolling-day-calendar/blob/master/sample_images/2.png?raw=true" height="300em" />
 
 
 ## Usage 

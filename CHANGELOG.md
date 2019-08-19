@@ -9,3 +9,7 @@
 ## [1.0.1] - Release.
 
 * Add more notes to read me, and also release the first version.
+
+## [1.0.2] - Release.
+
+* Fix screenshots.
