@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scrolling_day_calendar/scrolling_day_calendar.dart';
-import 'dart:math';
+import 'package:example/test_data.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Day Scroller Demo'),
     );
   }
 }
@@ -32,56 +32,81 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime startDate = DateTime.now().subtract(Duration(days: 10));
   DateTime endDate = DateTime.now().add(Duration(days: 10));
 
+  // test data
+  Map testData = TestData.getTestData();
+
   Widget pageItems = Center(
     child: Text("No events"),
   );
 
-  randomWidget() {
-    List widgets = [
-      ListView(
-        children: <Widget>[
-          Text("Hey"),
-          Text("Hey"),
-          Text("Hey"),
-        ],
-      ),
-      ListView(
-        children: <Widget>[
-          Text("Pee"),
-          Text("Pee"),
-          Text("Pee"),
-        ],
-      ),
-      Center(
-        child: Text("No events"),
-      )
-    ];
+  randomWidget(DateTime selectedDate) {
+    String dateString =
+        "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
 
-    int min = 0;
-    int max = widgets.length;
-    Random rnd = new Random();
-    var r = min + rnd.nextInt(max - min);
+    if (testData.containsKey(dateString)) {
+      List items = testData[dateString];
 
-    return widgets[r];
+      return ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, key) {
+          return Card(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    items[key]["title"],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(items[key]["description"])
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    }
+
+    return Center(
+      child: Text("No events"),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: ScrollingDayCalendar(
-        startDate: startDate,
-        endDate: endDate,
-        selectedDate: selectedDate,
-        onDateChange: (date) {
-          //print(date);
-          setState(() {
-            pageItems = randomWidget();
-          });
-        },
-        pageItems: pageItems,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.title),
+        ),
+        body: ScrollingDayCalendar(
+          startDate: startDate,
+          endDate: endDate,
+          selectedDate: selectedDate,
+          onDateChange: (direction, DateTime selectedDate) {
+            setState(() {
+              pageItems = randomWidget(selectedDate);
+            });
+          },
+          dateStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          pageItems: pageItems,
+          dateFormat: "dd/MM/yyyy",
+          dateBackgroundColor: Colors.grey,
+          forwardIcon: Icons.arrow_forward,
+          backwardIcon: Icons.arrow_back,
+          pageChangeDuration: Duration(
+            microseconds: 700,
+          ),
+        ),
       ),
     );
   }
