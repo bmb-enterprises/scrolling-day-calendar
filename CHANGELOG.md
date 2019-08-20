@@ -29,3 +29,7 @@
 ## [2.0.1] - Release.
 
 * Add a new method to build pages by passing in widgets sorted by date, this allows for a more smoother scrolling
+
+## [2.0.2] - Release.
+
+* Add github link 
