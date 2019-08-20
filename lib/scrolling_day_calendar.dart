@@ -67,7 +67,7 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
   int _previousPage;
   DateTime _selectedDate;
 
-  onPageChange(direction) {
+  _onPageChange(direction) {
     _currentPage = _pageController.page.round();
 
     if (_currentPage > _previousPage) {
@@ -99,6 +99,9 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
   }
 
   Widget _buildPage(index) {
+    if (widget.pageItems != null) {
+      return widget.pageItems;
+    }
     DateTime dateTime = widget.startDate;
     index = index + 1;
 
@@ -230,7 +233,7 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
             controller: _pageController,
             scrollDirection: Axis.horizontal,
             itemCount: _totalPages, // Can be null
-            onPageChanged: (direction) => onPageChange(direction),
+            onPageChanged: (direction) => _onPageChange(direction),
             itemBuilder: (context, index) {
               return _buildPage(index);
             },
