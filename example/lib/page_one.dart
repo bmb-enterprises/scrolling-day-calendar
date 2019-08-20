@@ -14,6 +14,9 @@ class _PageOneState extends State<PageOne> {
   DateTime startDate = DateTime.now().subtract(Duration(days: 200));
   DateTime endDate = DateTime.now().add(Duration(days: 200));
 
+  // this date will update every time the page changes
+  DateTime _currentPageDate;
+
   // test data
   Map testData = TestData.getTestData();
   Map<String, Widget> widgets = Map();
@@ -71,6 +74,7 @@ class _PageOneState extends State<PageOne> {
   @override
   void initState() {
     _buildPages();
+    _currentPageDate = selectedDate;
     super.initState();
   }
 
@@ -123,10 +127,36 @@ class _PageOneState extends State<PageOne> {
           pageChangeDuration: Duration(
             milliseconds: 700,
           ),
+          onDateChange: (direction, DateTime date) {
+            _currentPageDate = date;
+          },
           widgets: widgets,
           widgetKeyFormat: widgetKeyFormat,
           noItemsWidget: Center(
-            child: Text("No items have been added for this date"),
+            child: MaterialButton(
+              onPressed: () {
+                String formattedDate =
+                    DateFormat(widgetKeyFormat).format(_currentPageDate);
+
+                testData[formattedDate] = [
+                  {
+                    "title": "NEW added 1 ",
+                    "description":
+                        "sed ullamcorper morbi tincidunt ornare. Feugiat vivamus at augue eget arcu. Arcu cursus euismod",
+                  },
+                  {
+                    "title": "New Added 2",
+                    "description":
+                        "ue. Lectus vestibulum mattis ullamcorper velit ",
+                  },
+                ];
+
+                setState(() {
+                  _buildPages();
+                });
+              },
+              child: Text("Add a new Item"),
+            ),
           ),
         ),
       ),
