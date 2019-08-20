@@ -23,7 +23,7 @@ class ScrollingDayCalendar extends StatefulWidget {
   // page widgets to display
   final Widget pageItems;
   // date format
-  final String dateFormat;
+  final String displayDateFormat;
   // date style
   final TextStyle dateStyle;
   // background color for date container
@@ -35,13 +35,20 @@ class ScrollingDayCalendar extends StatefulWidget {
   // page change duration
   final Duration pageChangeDuration;
 
+  final Map<String, Widget> widgets;
+  final Widget noItemsWidget;
+  final String widgetKeyFormat;
+
   ScrollingDayCalendar({
     @required this.pageItems,
     @required this.startDate,
     @required this.endDate,
     @required this.selectedDate,
-    @required this.onDateChange,
-    this.dateFormat,
+    this.onDateChange,
+    this.widgets,
+    this.noItemsWidget,
+    this.widgetKeyFormat,
+    this.displayDateFormat,
     this.dateStyle,
     this.dateBackgroundColor,
     this.forwardIcon,
@@ -85,7 +92,24 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
 
     _previousPage = _pageController.page.round();
 
-    widget.onDateChange(direction, _selectedDate);
+    // run page update sent by user
+    if (widget.onDateChange != null) {
+      widget.onDateChange(direction, _selectedDate);
+    }
+  }
+
+  Widget _buildPage(index) {
+    DateTime dateTime = widget.startDate;
+    index = index + 1;
+
+    dateTime = widget.startDate.add(Duration(days: index));
+    String key = DateFormat(widget.widgetKeyFormat).format(dateTime);
+
+    if (widget.widgets != null && widget.widgets.containsKey(key)) {
+      return widget.widgets[key];
+    }
+
+    return widget.noItemsWidget;
   }
 
   @override
@@ -96,15 +120,20 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
 
   @override
   void initState() {
+    // set the selected date
     _selectedDate = widget.selectedDate;
+
+    // calculate the start page
     int startingPage =
         _selectedDate.difference(widget.startDate).inDays.floor();
 
     setState(() {
+      // set the total number of pages based on start date and end date
       _totalPages = widget.endDate.difference(widget.startDate).inDays.floor();
 
       // set starting page
       _pageController = PageController(initialPage: startingPage);
+
       // set previous page
       _previousPage = startingPage;
     });
@@ -153,8 +182,8 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
                   padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                   child: Center(
                     child: Text(
-                      DateFormat(widget.dateFormat != null
-                              ? widget.dateFormat
+                      DateFormat(widget.displayDateFormat != null
+                              ? widget.displayDateFormat
                               : "dd/MM/yyyy")
                           .format(_selectedDate),
                       style: widget.dateStyle != null
@@ -203,9 +232,7 @@ class _ScrollingDayCalendarState extends State<ScrollingDayCalendar> {
             itemCount: _totalPages, // Can be null
             onPageChanged: (direction) => onPageChange(direction),
             itemBuilder: (context, index) {
-              return Center(
-                child: widget.pageItems,
-              );
+              return _buildPage(index);
             },
           ),
         ),

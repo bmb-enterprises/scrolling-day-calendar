@@ -1,9 +1,20 @@
 class TestData {
   static Map getTestData() {
     return {
-      "16/8/2019": [
+      "2019-08-09": [
         {
-          "title": "non proident, sunt in culpa qui ",
+          "title": "5th Aug ",
+          "description":
+              "sed ullamcorper morbi tincidunt ornare. Feugiat vivamus at augue eget arcu. Arcu cursus euismod",
+        },
+        {
+          "title": "ad minim veniam, qu",
+          "description": "ue. Lectus vestibulum mattis ullamcorper velit ",
+        }
+      ],
+      "2019-08-16": [
+        {
+          "title": "16th Aug ",
           "description":
               "sed ullamcorper morbi tincidunt ornare. Feugiat vivamus at augue eget arcu. Arcu cursus euismod",
         },
@@ -24,9 +35,9 @@ class TestData {
           "description": "ue. Lectus vestibulum mattis ullamcorper velit ",
         }
       ],
-      "17/8/2019": [
+      "2019-08-17": [
         {
-          "title": "Lorem ipsum dolor sit amet",
+          "title": "17th Aug",
           "description":
               "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
         },
@@ -36,9 +47,9 @@ class TestData {
               "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
         }
       ],
-      "18/8/2019": [
+      "2019-08-18": [
         {
-          "title": "laboris nisi ut aliquip ex ea ",
+          "title": "18th Aug",
           "description":
               "odo consequat. Duis aute irure dolor in reprehenderit in voluptate",
         },
@@ -48,16 +59,23 @@ class TestData {
               "empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         }
       ],
-      "19/8/2019": [
+      "2019-08-19": [
         {
-          "title": "reprehenderit in voluptate velit esse cillum",
+          "title": "19th Aug",
           "description":
               "ermentum iaculis eu non diam phasellus. Massa tincidunt nunc "
         },
       ],
-      "21/8/2019": [
+      "2019-08-20": [
         {
-          "title": "non proident, sunt in culpa qui ",
+          "title": "20th Aug",
+          "description":
+              "ermentum iaculis eu non diam phasellus. Massa tincidunt nunc "
+        },
+      ],
+      "2019-08-21": [
+        {
+          "title": "21 Aug",
           "description":
               "sed ullamcorper morbi tincidunt ornare. Feugiat vivamus at augue eget arcu. Arcu cursus euismod",
         },
@@ -78,9 +96,9 @@ class TestData {
           "description": "ue. Lectus vestibulum mattis ullamcorper velit ",
         }
       ],
-      "22/8/2019": [
+      "2019-08-22": [
         {
-          "title": "Lorem ipsum dolor sit amet",
+          "title": "22 Aug",
           "description":
               "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
         },
@@ -90,9 +108,9 @@ class TestData {
               "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
         }
       ],
-      "23/8/2019": [
+      "2019-08-23": [
         {
-          "title": "non proident, sunt in culpa qui ",
+          "title": "23 Aug",
           "description":
               "sed ullamcorper morbi tincidunt ornare. Feugiat vivamus at augue eget arcu. Arcu cursus euismod",
         },
@@ -113,9 +131,9 @@ class TestData {
           "description": "ue. Lectus vestibulum mattis ullamcorper velit ",
         }
       ],
-      "14/8/2019": [
+      "2019-08-24": [
         {
-          "title": "Lorem ipsum dolor sit amet",
+          "title": "24 Aug",
           "description":
               "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
         },
@@ -125,9 +143,9 @@ class TestData {
               "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
         }
       ],
-      "25/8/2019": [
+      "2019-08-25": [
         {
-          "title": "non proident, sunt in culpa qui ",
+          "title": "25 Aug",
           "description":
               "sed ullamcorper morbi tincidunt ornare. Feugiat vivamus at augue eget arcu. Arcu cursus euismod",
         },

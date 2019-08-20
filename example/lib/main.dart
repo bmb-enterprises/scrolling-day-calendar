@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scrolling_day_calendar/scrolling_day_calendar.dart';
 import 'package:example/test_data.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,20 +30,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DateTime selectedDate = DateTime.now();
-  DateTime startDate = DateTime.now().subtract(Duration(days: 10));
-  DateTime endDate = DateTime.now().add(Duration(days: 10));
-
+  DateTime startDate = DateTime.now().subtract(Duration(days: 200));
+  DateTime endDate = DateTime.now().add(Duration(days: 200));
+  Widget pageItems;
   // test data
   Map testData = TestData.getTestData();
+  Map<String, Widget> widgets = Map();
+  String widgetKeyFormat = "yyyy-MM-dd";
 
-  Widget pageItems = Center(
-    child: Text("No events"),
-  );
+  _buildPages() {
+    testData.forEach((key, values) {
+      DateTime dateTime = DateTime.parse(key);
+      var widget = _widgetBuilder(dateTime);
+      widgets.addAll({key: widget});
+    });
 
-  randomWidget(DateTime selectedDate) {
-    String dateString =
-        "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+    return widgets;
+  }
 
+  _widgetBuilder(DateTime selectedDate) {
+    String dateString = DateFormat(widgetKeyFormat).format(selectedDate);
+
+    // find the child records in test data and build widgets
     if (testData.containsKey(dateString)) {
       List items = testData[dateString];
 
@@ -72,9 +81,17 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
 
+    // default widget to display on the page
     return Center(
       child: Text("No events"),
     );
+  }
+
+  @override
+  void initState() {
+    _buildPages();
+    pageItems = _widgetBuilder(selectedDate);
+    super.initState();
   }
 
   @override
@@ -89,22 +106,21 @@ class _MyHomePageState extends State<MyHomePage> {
           startDate: startDate,
           endDate: endDate,
           selectedDate: selectedDate,
-          onDateChange: (direction, DateTime selectedDate) {
-            setState(() {
-              pageItems = randomWidget(selectedDate);
-            });
-          },
           dateStyle: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
-          pageItems: pageItems,
-          dateFormat: "dd/MM/yyyy",
+          displayDateFormat: "dd, MMM yyyy",
           dateBackgroundColor: Colors.grey,
           forwardIcon: Icons.arrow_forward,
           backwardIcon: Icons.arrow_back,
           pageChangeDuration: Duration(
-            milliseconds: 400,
+            milliseconds: 700,
+          ),
+          widgets: widgets,
+          widgetKeyFormat: widgetKeyFormat,
+          noItemsWidget: Center(
+            child: Text("No items have been added for this date"),
           ),
         ),
       ),
